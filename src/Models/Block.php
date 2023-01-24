@@ -3,7 +3,7 @@
 namespace Dyusha\HtmlEditor\Models;
 
 use Illuminate\Database\Eloquent\Model;
-
+use Illuminate\Support\Str;
 /**
  * Class Block
  * @package Dyusha\HtmlEditor\Models
@@ -52,10 +52,10 @@ class Block extends Model
      */
     protected function cleanupContent($string)
     {
-        $string = trim(str_replace('  ', ' ', str_replace('&nbsp;', ' ', $string)));
+        $string = trim(Str::replace('  ', ' ', Str::replace('&nbsp;', ' ', $string)));
 
         $vueJsDebugStrings = ['<!--v-start-->', '<!--v-end-->', '<!--v-component-->'];
-        $string = str_replace($vueJsDebugStrings, '', $string);
+        $string = Str::replace($vueJsDebugStrings, '', $string);
 
         return trim($string);
     }
